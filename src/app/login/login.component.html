@@ -1,0 +1,41 @@
+<div class="center-container">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+            <mat-card-subtitle>Ingrese los datos</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form id="login-form" #lForm="ngForm" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
+                
+                <mat-form-field class="example-full-width" [ngClass]="{'input-invalid': submitted && error?.code==1}">
+
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput placeholder="123@gmail.com" value="" name="lg_email">
+                    <mat-hint *ngIf="submitted && error?.code==1 && !loginForm.controls.email.hasError('required')">
+                        {{error.message}}</mat-hint>
+                    <mat-hint *ngIf="submitted && loginForm.controls.email.hasError('required')">Este campo es
+                        Obligatorio</mat-hint>
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" [ngClass]="{'input-invalid': submitted && error?.code==2}">
+
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput placeholder="123moco_xd" name="lg_pass">
+                    <mat-hint *ngIf="submitted && error?.code==2 && !loginForm.controls.password.hasError('required')">
+                        {{error.message}}</mat-hint>
+                    <mat-hint *ngIf="submitted && loginForm.controls.password.hasError('required')">Este campo es
+                        Obligatorio</mat-hint>
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <mat-tab-group>
+            <mat-tab label="Login">
+                <button mat-button color="primary" form="login-form">Acceder</button>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>
